@@ -94,4 +94,17 @@ export const formatDialect = (
   return new Formatter(createDialect(dialect), options).format(query);
 };
 
+export const parseDialect = (query: string, { dialect, ...cfg }: FormatOptionsWithDialect) => {
+  if (typeof query !== 'string') {
+    throw new Error('Invalid query argument. Expected string, instead got ' + typeof query);
+  }
+
+  const options = validateConfig({
+    ...defaultOptions,
+    ...cfg,
+  });
+
+  return new Formatter(createDialect(dialect), options).parse(query);
+};
+
 export type FormatFn = typeof format;
