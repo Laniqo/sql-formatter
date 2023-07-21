@@ -37,7 +37,7 @@ export default class Formatter {
     return finalQuery.trimEnd();
   }
 
-  private parse(query: string): StatementNode[] {
+  public parse(query: string): StatementNode[] {
     return createParser(this.dialect.tokenizer).parse(query, this.cfg.paramTypes || {});
   }
 
